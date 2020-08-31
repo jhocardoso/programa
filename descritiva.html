@@ -73,19 +73,76 @@
                 </select>
             </div>
             <div id="botao">
-                <input type="button" value="CALCULAR">
+                <input id="button" type="button" value="CALCULAR">
             </div>        
         </form>
     </div>
     <div id="tabela">
         <table id="tabelasvariaveis">      
             <tr><td id="nome-var2">"Nome da Variável"</td><td>Frequência Simples (fi)</td></tr>
-            <tr><td></td><td></td></tr>
-            <tr><td></td><td></td></tr> 
-            <tr><td></td><td></td></tr> 
-            <tr><td></td><td></td></tr>             
+                        
         </table>
     </div>
-    
+    <script>
+        const nome = document.querySelector('#nome-var')
+        const nome2 = document.querySelector('#nome-var2')
+        const dados = document.getElementById("dados")
+        const resultado = document.getElementById("button")
+        const tabela = document.getElementById("tabelasvariaveis")
+
+        let tira_espaco = /\s*;\s*/; // Tira os espaços entre os ";"
+        
+
+        function botaoClique() {
+
+            // COLOCA O NOME DA VARIÁVEL NA TABELA
+            nome2.innerHTML = nome.value
+
+            // CRIANDO O VETOR            
+            let dados_valores = dados.value            
+            let vetor1 = dados_valores.split(tira_espaco)  // Tira os espaços entre os ";"         
+            let vetor_final = vetor1.filter(x => x.trim()) // Remove itens vazios do vetor
+            vetor_final.sort()  // Coloca em ordem
+            
+
+            // Contando as ocorrências de cada item no vetor       
+            for (let i = 0; i < vetor_final.length; i++) {
+                let valido = true
+
+                if (vetor_final[i] == vetor_final[i-1]) {
+                    valido = false
+                }
+
+                if (valido) {
+                    let indices = []
+                    let item = vetor_final[i] 
+                    let idx = vetor_final.indexOf(item)
+                    while (idx != -1) {
+                        indices.push(idx); 
+                        idx = vetor_final.indexOf(item, idx + 1);
+                    }
+                    
+                    //CRIAR LINHA NA TABELA
+                    let linha = document.createElement('tr')
+                    tabela.appendChild(linha)
+                    //CRIAR CÉLULA COM O NOME DO PRIMEIRO ITEM
+                    let cel1 = document.createElement('td')
+                    cel1.id = 'celula1'
+                    cel1.innerText = vetor_final[i]
+                    linha.appendChild(cel1)
+                    //CRIAR CÉLULA COM A QUANTIDADE ENCONTRADA
+                    let cel2 = document.createElement('td')
+                    cel2.id = 'celula2'
+                    cel2.innerText = indices.length
+                    linha.appendChild(cel2)
+
+                }
+            }
+        }
+
+        resultado.addEventListener('click', botaoClique)
+        
+
+    </script>
 </body>
 </html>
