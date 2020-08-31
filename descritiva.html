@@ -105,7 +105,8 @@
             vetor_final.sort()  // Coloca em ordem
             
 
-            // Contando as ocorrências de cada item no vetor       
+            // Contando as ocorrências de cada item no vetor 
+            let total = 0      
             for (let i = 0; i < vetor_final.length; i++) {
                 let valido = true
 
@@ -121,6 +122,9 @@
                         indices.push(idx); 
                         idx = vetor_final.indexOf(item, idx + 1);
                     }
+
+                    total += parseInt(indices.length)
+                    
                     
                     //CRIAR LINHA NA TABELA
                     let linha = document.createElement('tr')
@@ -138,6 +142,20 @@
 
                 }
             }
+            //CRIANDO A LINHA "TOTAL" DA TABELA
+            let linha = document.createElement('tr')
+            tabela.appendChild(linha)
+            //CRIAR CÉLULA COM O NOME "TOTAL"
+            let cel1 = document.createElement('td')
+            cel1.id = 'celula1'
+            cel1.innerText = 'TOTAL'
+            linha.appendChild(cel1)
+            //CRIAR CÉLULA COM A QUANTIDADE TOTAL
+            let cel2 = document.createElement('td')
+            cel2.id = 'celula2'
+            cel2.innerText = total
+            linha.appendChild(cel2)
+
         }
 
         resultado.addEventListener('click', botaoClique)
