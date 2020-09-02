@@ -124,8 +124,14 @@
                     }
 
                     total += parseInt(indices.length)
+
+                    // USAR O INDICES[] PARA DETERMINAR A FREQUENCIA ACUMULADA
                     
-                    
+                    //**************************************
+                    // - CRIAR OBJETOS AQUI *****************
+                    //**************************************
+
+
                     //CRIAR LINHA NA TABELA
                     let linha = document.createElement('tr')
                     tabela.appendChild(linha)
@@ -139,6 +145,10 @@
                     cel2.id = 'celula2'
                     cel2.innerText = indices.length
                     linha.appendChild(cel2)
+
+                    // 1ª OPÇÃO: CRIAR ACUMULADOR
+                    // 2ª OPÇÃO: CRIAR IFRAME POR OUTRO HTML
+                    // 3ª OPÇÃO: CRIAR OBJETOI DENTRO DE VETOR
 
                 }
             }
