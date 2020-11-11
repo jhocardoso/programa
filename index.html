@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>G6 - Estatística</title>
+	<link rel="icon" href="img/icone2.png">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+	<div class="loader_bg">
+        <div class="g6">
+            <h1>G6</h1>
+        </div>
+        <svg height="100" width="100" viewBox="0 0 20 20">
+            <circle r="10" cx="10" cy="10" fill="#4d1717" />
+            <circle class="circle" r="5.1" cx="10" cy="10" fill="transparent"
+                    stroke="#fff"
+                    stroke-width="10"
+                    stroke-dasharray="calc(35 * 31.4 / 100) 31.4"
+                    transform="rotate(-90) translate(-20)" />        
+        </svg>
+        <br>
+        <div class="texto">
+            <h1 class="loading">Estatística</h1>
+        </div>
+    </div>
+
+
+	<img class="wave" src="img/wave2.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg2.svg">
+		</div>
+		<div class="login-content">
+			<form action="home.html" method="POST" name="form" onsubmit="return logar()">
+				<img src="img/logo-final2.png">
+				<h2 class="title">Bem-vindo</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Usuário</h5>
+           		   		<input name="email" type="text" class="input">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Senha</h5>
+						<input id="pwd" name="senha" type="password" class="input">
+						<i class="fa fa-eye" id="eye" onclick="showHide()"></i>
+						<i class="fa fa-eye-slash hide" id="eye2" onclick="showHide()"></i>
+            	   </div>
+				</div>
+            	<a href="#">Esqueceu a senha?</a> 
+				<input type="submit" class="btn" value="Login">
+				<a href="home.html" id="convidado">Entrar como convidado</a> 
+            </form>
+		</div>
+    </div>
+	<script type="text/javascript" src="script/index.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+	<script>
+		setTimeout(function() {
+			$('.loader_bg').fadeToggle();
+		}, 2000)
+	</script>
+
+</body>
+</html>

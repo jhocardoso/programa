@@ -7,12 +7,14 @@
     <title>G6 - Estatística</title>
     <link rel="icon" href="img/icone2.png">
     <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/descritiva.css">
+    <link rel="stylesheet" href="css/correlacao.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="./script/papaparse.min.js"></script>
 </head>
 
@@ -39,10 +41,10 @@
         });
     </script>
 
-    <div>
-        <h1>ESTATÍSTICA DESCRITIVA</h1>
+    <div class="titulo">
+        <h1>CORRELAÇÃO E REGRESSÃO</h1>
     </div>
-    <div id="formulario">
+    <div class="formulario">
         <form>
             <h3>Selecione arquivo .CSV com valores para análise ou insira os valores manualmente:</h3>
             <div class="div-upload">
@@ -51,11 +53,10 @@
             <div class="div-upload">
                 <div class="am">
                     <label for="upload-csv">Selecionar um arquivo</label>
-                    <input type="file" id="upload-csv" accept=".csv">
+                    <input type="file" id="upload-csv" accept=".csv" >
                 </div>
-
                 <div class="pop">
-                    <label>
+                    <label>                        
                         <ul id="side-menu">
                             <li>
                                 <i id="btn-upload-csv" class="fas fa-file-import"></i>
@@ -68,101 +69,49 @@
                 </div>
             </div>
             <div>
-                <label>Nome da Variável:</label><br><input class="dados" id="nome-var" type="text"
-                    placeholder="Digite o nome da variável">
+                <label>Valores de X:</label><br><input class="dados" id="valorX" type="text"
+                    placeholder="Digite os valores de X separados por ';'. Exemplo: 1;2;3;4">
             </div>
+            <br>
             <div>
-                <label>Coleta de Dados:</label><br><input class="dados" id="dados" type="text"
-                    placeholder="Digite os dados separados por ';'. Exemplo: 1;2;3"></div>
-            <div class="populacao">
-                <label>
-                    <input type="radio" name="escolha" id="População" checked>
-                    <i class="fa fa-check"></i>População
-                </label>
-                <label>
-                    <input type="radio" name="escolha" id="Amostra">
-                    <i class="fa fa-check"></i>Amostra
-                </label>
+                <label>Valores de Y:</label><br><input class="dados" id="valorY" type="text"
+                    placeholder="Digite os valores de Y separados por ';'. Exemplo: 1;2;3;4" />
             </div>
-            <div>
-                <label>Tipo de Variável:</label><br>
-                <select class="select" id="tipo de variavel">
-                    <option>Selecione</option>
-                    <option>Qualitativa Nominal</option>
-                    <option>Qualitativa Ordinal</option>
-                    <option>Quantitativa Discreta</option>
-                    <option>Quantitativa Contínua</option>
-                </select>
-            </div>
-            <div id="ordem">
-                <label>Coloque a ordem dos dados</label><br><input class="dados" id="ordem_dados" type="text"
-                    placeholder="Digite a ordem desejada">
-            </div>   
-
             
             <div id="botao">
                 <input class="botao" id="button" type="button" value="CALCULAR" onmouseclick="botaoClique">
-                <input class="botao" id="button" type="button" value="LIMPAR DADOS" onclick="window.location.reload()">
+                <input class="botao" type="button" value="LIMPAR DADOS" onclick="botaoApagar()">
             </div>
         </form>
     </div>
-    <section id="section-tabelas">
-        <div id="tabela">
-            <table id="tabelasvariaveis"></table>
-        </div>
-        <div>
-            <table id="tabela_medias"></table>
-        </div>
+    
+    <div id="tabela">
+        <table id="tabelasvariaveis"></table>
+    </div>
 
-        <div id="varianca">
-            <table id="varianca_desvio"></table>
-        </div>
-    </section>
-
-    <aside id="aside-grafico">
-        <div id="canvas">
-            <canvas id="myChart"></canvas>
-        </div>
-
-        <div id="medida_separatriz">
-            <h2>Medidas Separatrizes</h2>
-            <select class="select medida" id="medias_moveis">
-                <option>Selecione a medida separatriz</option>
-                <option onmouseclick="criando_valores">Quartil</option>
-                <option onmouseclick="criando_valores">Quintil</option>
-                <option onmouseclick="criando_valores">Decil</option>
-                <option onmouseclick="criando_valores">Porcentil</option>
-            </select>
-            <select class="select medida valor" id="medias_moveis_valores">
-            </select>
-            <br><i class="fas fa-arrow-right"></i>
-            <p id="media_movel_resultado"></p>
-        </div>
-    </aside>
-
+    <div id="calculo_correlação" class="esconder"></div>
+    <!-- Div Gráfico -->
+    <div id="grafico">
+        <div id="graficoCorrelacao" class="correlacao"></div>
+    </div>
+    <!-- Div botão 'rolar para cima' -->
     <a href="#" id="to-top" class="to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
+
     <script>
         let btn_upload = document.getElementById('btn-upload-csv').addEventListener('click', () => {
             Papa.parse(document.getElementById('upload-csv').files[0], {
                 download: true,
                 header: true,
                 complete: function(results) {
-                    console.log(results)
-                    
-                    
+                    console.log(results)  
                     results.data.map((data, index) => {
-                        
-                        let dadosx = document.getElementById("dados")
+                        let dadosx = document.getElementById("valorX")
                         gerarDadosX(dadosx, data)
                         let dadosy = document.getElementById("valorY")
                         gerarDadosY(dadosy, data)
-                        
                     })
-                    
-
-
                 }
             })
         })
@@ -184,26 +133,9 @@
                 }                
             }
         }
-
-        /*
-        let vetor = []
-        function gerarDados(dados, data) {
-            for(let i of data) {
-                if(!isNaN(i)) {
-                    dados.value += i + ';' 
-                }               
-            }
-            vetor = Array.from(data)
-                               
-            
-        } */
-
-        
-        
     </script>
+    <script src="./script/correlacao.js"></script>
 
-    <script src="script/descritiva.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </body>
 
 </html>

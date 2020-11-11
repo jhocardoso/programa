@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G6 - Estatística</title>
+    <link rel="icon" href="img/icone2.png">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+    <div class="loader_bg">
+        <div class="g6">
+            <h1>G6</h1>
+        </div>
+        <svg height="100" width="100" viewBox="0 0 20 20">
+            <circle r="10" cx="10" cy="10" fill="#4d1717" />
+            <circle class="circle" r="5.1" cx="10" cy="10" fill="transparent"
+                    stroke="#fff"
+                    stroke-width="10"
+                    stroke-dasharray="calc(35 * 31.4 / 100) 31.4"
+                    transform="rotate(-90) translate(-20)" />        
+        </svg>
+        <br>
+        <div class="texto">
+            <h1 class="loading">Estatística</h1>
+        </div>
+    </div>
+
+    <header>
+        <div class="inner-width">
+          <a href="home.html" class="logo"><img src="img/logo-final.png" alt=""></a>
+          <i class="menu-toggle-btn fas fa-bars"></i>
+          <nav class="navigation-menu">
+            <a href="descritiva.html"><i class="fas fa-chart-bar home"></i></i> Descritiva</a>
+            <a href="probabilidade.html"><i class="fas fa-align-left about"></i> Probabilidade</a>
+            <a href="correlacao.html"><i class="fab fa-buffer works"></i> Correlação</a>
+            <a href="sobre.html"><i class="fas fa-users team"></i> Sobre nós</a> 
+            <a href="index.html"><i class="fas fa-sign-out-alt sair"></i> Sair</a>         
+          </nav>
+        </div>
+      </header>
+  
+  
+    <script type="text/javascript">
+    $(".menu-toggle-btn").click(function(){
+        $(this).toggleClass("fa-times");
+        $(".navigation-menu").toggleClass("active");
+    });
+
+    setTimeout(function() {
+			$('.loader_bg').fadeToggle();
+		}, 1000)
+    </script>
+
+    <div class="container">
+        <div class="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="content">
+                <h2>DESCRITIVA</h2>
+                <!-- <h3>Estatística Descritiva</h3> -->
+                <p>A Estatística Descritiva é o ramo da estatística que visa sintetizar os dados de maneira direta, aplicando várias técnicas para descrever e sumarizar um conjunto de dados.</p>
+                <a class="btn1" href="descritiva.html">Acessar</a>
+            </div>
+        </div>
+        <div class="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="content">
+                <h2>PROBABILIDADE</h2>
+                <!-- <h3>Post Title</h3> -->
+                <p>A Probabilidade é o estudo das chances de ocorrência de um resultado, que são obtidas pela razão entre casos favoráveis e casos possíveis, mediante um evento incerto que possui riscos.</p>
+                <a class="btn2" href="probabilidade.html">Acessar</a>
+            </div>
+        </div>
+        <div class="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="content">
+                <h2>CORRELAÇÃO</h2>
+                <!-- <h3>Post Title</h3> -->
+                <p>A Correlação procura entender como uma variável se comporta em um cenário onde outra está variando, visando identificar se existe alguma relação entre a variabilidade de ambas.</p>
+                <a class="btn3" href="correlacao.html">Acessar</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

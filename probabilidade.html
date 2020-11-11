@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G6 - Estatística</title>
+    <link rel="icon" href="img/icone2.png">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/probabilidade.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="inner-width">
+            <a href="home.html" class="logo"><img src="img/logo-final.png" alt=""></a>
+            <i class="menu-toggle-btn fas fa-bars"></i>
+            <nav class="navigation-menu">
+                <a href="descritiva.html"><i class="fas fa-chart-bar home"></i></i> Descritiva</a>
+                <a href="probabilidade.html"><i class="fas fa-align-left about"></i> Probabilidade</a>
+                <a href="correlacao.html"><i class="fab fa-buffer works"></i> Correlação</a>
+                <a href="sobre.html"><i class="fas fa-users team"></i> Sobre nós</a>
+                <a href="index.html"><i class="fas fa-sign-out-alt sair"></i> Sair</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <script type="text/javascript">
+        $(".menu-toggle-btn").click(function () {
+            $(this).toggleClass("fa-times");
+            $(".navigation-menu").toggleClass("active");
+        });
+    </script>
+
+    <div class="titulo">
+        <h1>PROBABILIDADE</h1>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- CARD D. BINOMIAL -->
+            <div class="swiper-slide">
+                <div id="ativo1" class="card">
+                    <div id="hover1" class="face face1" onclick="mudarCard(1)">
+                        <div class="content">
+                            <img src="img/01.png">
+                            <h3>BINOMIAL</h3>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <form>
+                                <div>
+                                    <label>Total(n):</label><br><input class="dados" id="total" type="number" min="1"
+                                        placeholder="Digite a quantidade de dados">
+                                </div>
+                                <div>
+                                    <label>Sucesso(p):</label><br><input class="dados" id="sucesso" type="number"
+                                        min="0" max="100"
+                                        placeholder="Digite o valor do sucesso em porcentagem sem o %" />
+                                </div>
+                                <div>
+                                    <label>Falha(q):</label><br><input class="dados" id="falha" type="number" min="0"
+                                        max="100" placeholder="Será preenchido automaticamente." disabled>
+                                </div>
+                                <div>
+                                    <label>Evento(k):</label><br>
+                                    <input class="dados" id="evento" type="text" min="0"
+                                        placeholder="Digite o evento desejado separado por ';'. Exemplo: 1;2;3;4">
+                                </div>
+
+                                <div id="botao">
+                                    <input class="botao" id="button" type="button" value="CALCULAR"
+                                        onmouseclick="botaoClique">
+                                    <input class="botao" type="button" value="LIMPAR DADOS" onclick="botaoApagar()">
+                                </div>
+                            </form>
+
+                            <script type="text/javascript">
+                                const selectSucesso = document.getElementById("sucesso")
+
+                                selectSucesso.addEventListener('change', (event) => {
+                                    const selectFalha = document.getElementById('falha')
+                                    selectFalha.value = 100 - event.target.value
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CARD D. NORMAL -->
+            <div class="swiper-slide">
+                <div id="ativo2" class="card">
+                    <div id="hover2" class="face face1" onclick="mudarCard(2)">
+                        <div class="content">
+                            <img id="normal" src="img/02.png">
+                            <h3> NORMAL</h3>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <form>
+                                <div>
+                                    <label>Média(Me):</label><br><input class="dados" id="media" type="number"
+                                        placeholder="Informe a média">
+                                </div>
+                                <br>
+                                <div>
+                                    <label>Desvio Padrão(DP):</label><br><input class="dados" id="desvioPadrao"
+                                        type="number" placeholder="Informe o desvio padrão" />
+                                </div>
+                                <div id="botaoNormal">
+                                    <input class="botaoNormal" type="button" name="prob" value="Menor"
+                                        onclick="mudarNormal(1)"></label>
+                                    <input class="botaoNormal" type="button" name="prob" value="Entre"
+                                        onclick="mudarNormal(2)"></label>
+                                    <input class="botaoNormal" type="button" name="prob" value="Maior"
+                                        onclick="mudarNormal(3)"></label>
+                                </div>
+                                <div id="inputProb">
+                                    <input id="valorMenor" class="dados" type="number" placeholder="Menor que" />
+                                    <input id="entreDe" class="dados" type="number" placeholder="De" />
+                                    <input id="entreAte" class="dados" type="number" placeholder="Até" />
+                                    <input id="valorMaior" class="dados" type="number" placeholder="Maior que" />
+                                </div>
+                                <div id="botao2">
+                                    <input class="botao" id="button2" type="button" value="CALCULAR"
+                                        onmouseclick="botaoClique2">
+                                    <input class="botao" type="button" value="LIMPAR DADOS" onclick="botaoApagar2()">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CARD D. UNIFORME -->
+            <div class="swiper-slide">
+                <div id="ativo3" class="card">
+                    <div id="hover3" class="face face1" onclick="mudarCard(3)">
+                        <div class="content">
+                            <img src="img/03.png">
+                            <h3>UNIFORME</h3>
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <form>
+                                <div>
+                                    <label>Informe o valor mínimo do intervalo(a):</label><br><input class="dados"
+                                        id="a" type="number" placeholder="Informe valor de (a)">
+                                </div>
+                                <br>
+                                <div>
+                                    <label>Informe o valor máximo do intervalo(b):</label><br><input class="dados"
+                                        id="b" type="number" placeholder="Informe valor de (b)" />
+                                </div>
+                                <div id="botaoUniforme">
+                                    <input class="botaoNormal" type="button" name="prob" value="Menor"
+                                        onclick="mudarUniforme(1)"></label>
+                                    <input class="botaoNormal" type="button" name="prob" value="Entre"
+                                        onclick="mudarUniforme(2)"></label>
+                                    <input class="botaoNormal" type="button" name="prob" value="Maior"
+                                        onclick="mudarUniforme(3)"></label>
+                                </div>
+                                <div id="inputProb">
+                                    <input id="valorMenorUniforme" class="dados" type="number"
+                                        placeholder="Menor que" />
+                                    <input id="entreDeUniforme" class="dados" type="number" placeholder="De" />
+                                    <input id="entreAteUniforme" class="dados" type="number" placeholder="Até" />
+                                    <input id="valorMaiorUniforme" class="dados" type="number"
+                                        placeholder="Maior que" />
+                                </div>
+                                <div id="botao3">
+                                    <input class="botao" id="button3" type="button" value="CALCULAR"
+                                        onmouseclick="botaoClique3">
+                                    <input class="botao" type="button" value="LIMPAR DADOS" onclick="botaoApagar3()">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setas de navegação -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    
+
+    <div id="tabela">
+        <table id="tabelasvariaveis"></table>
+    </div>
+    <div>
+        <div id="graficoGauss" class="gauss" style="min-width: 550px;"></div>
+    </div>
+
+    <a href="#" id="to-top" class="to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="./script/probabilidade.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Initializar Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slideToClickedSlide: true,
+            slidesPerView: 'auto',
+            initialSlide: 1,
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
+</body>
+
+</html>

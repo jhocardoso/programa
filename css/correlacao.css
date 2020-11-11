@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 40px;
+}
+
+.titulo {
+    margin: 20px;
+}
+
+/*  FORMULÁRIO  */
+form {
+    border: 10px solid #4d1717;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    width: 530px;
+    height: 400px;
+    margin: auto;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.dados {
+    height: 200%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+}
+
+.div-upload {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.div-upload input {
+    display: none
+}
+
+
+  
+/* Aparência que terá o seletor de arquivo */
+.am  label {
+    background-color: #4d1717;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    padding: 6px 20px;
+    line-height: 40px;
+}
+
+
+.pop label .fas {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: #4d1717;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 4px;
+    padding-top: 0px;
+    color: #6f6f6f;
+    font-size: 25px;
+    border-radius: 20%;
+    cursor: pointer;
+    box-shadow: -1px -1px 3px rgba(255, 255, 255, 0.1),
+                2px 2px 6px rgba(0, 0, 0, 0.8);    
+}
+.pop label .fas:hover {
+    color: #00fff1;
+    box-shadow: inset -1px -1px 3px rgba(255, 255, 255, 0.1),
+                inset 2px 2px 6px rgba(0, 0, 0, 1); 
+    text-shadow: 0 0 5px #00fff1,
+                 0 0 20px #00fff1;
+}
+
+#side-menu {
+    color: #000;
+    width: 80px;
+    list-style: none;
+    transition: ease-in-out all .4s;
+    display: table;
+}
+
+li {
+    width: 50%;
+    height: 500%;
+    display: table-cell;
+}
+
+.side-menu__label {
+    float: left;
+    line-height: 20px;
+    width: 100px;
+    opacity: 0;
+    position: absolute;
+    transition: ease-in-out all .4s;
+}
+
+#side-menu:hover {
+    width: 100px;
+}
+
+#side-menu:hover .side-menu__label {
+    opacity: 1;
+}
+
+
+div#botao {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.botao {
+    margin-top: 10px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    background: #4d1717;
+    cursor: pointer;
+    box-shadow: -1px -1px 3px rgba(255, 255, 255, 0.1),
+        2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.botao:hover {
+    color: #4d1717;
+    background: #fff;
+    box-shadow: 0 0 5px #fff,
+        0 0 25px #fff;
+}
+
+/* TABELA */
+div#tabela {
+    position: relative;
+    width: 600px;
+    margin: auto;
+}
+
+table {
+    overflow: hidden;
+    border-radius: 20px;
+    border-spacing: 0px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+tr#cabecalho {
+    background-color: #4d1717;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #A56B6B;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tr:hover:not(#cabecalho) {
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    font-weight: 600;
+}
+
+table td {
+    border: 1px #606060;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* correlação calculo*/
+div#calculo_correlação {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    width: 600px;
+    margin: auto;
+    visibility: hidden;
+    background-color: #fff;
+    top: 20px;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+div#inputFuturo {
+    width: 600px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+}
+
+.h3-futuro {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 600px;
+    background-color: #4d1717;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.label-futuro {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-left: 10px;
+}
+
+div#calculo_correlação input {
+    height: 40px;
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 40%;
+    margin: 10px;
+}
+
+div#grafico {
+    position: relative;
+    margin: auto;
+    top: 50px;
+}
+
+.correlacao, .esconder {
+    display: none;
+}
+
+
+/* BOTÃO DE VOLTAR PARA O TOPO */
+.to-top {
+    background: white;
+    position: fixed;
+    bottom: 16px;
+    right: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #1f1f1f;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s;
+}
+
+.to-top.active {
+    bottom: 32px;
+    pointer-events: auto;
+    opacity: 1;
+    z-index: 1;
+}
